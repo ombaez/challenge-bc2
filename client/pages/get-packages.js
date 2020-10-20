@@ -1,22 +1,32 @@
+import { useEffect, useState } from "react";
 import axios from "axios";
 import https from "https";
+import { CardCustomed as Card } from "../components/UI/Cards";
 
-export async function getServerSideProps() {
-  const res = await axios({
-    url: "http://localhost:8080/packages",
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    httpsAgent: new https.Agent({
-      rejectUnauthorized: false,
-      requestCert: false,
-    }),
-  });
-  console.log(res.data, "res");
-  return { props: { data: res.data } };
-}
+export default function Packages() {
+  const [allPackages, setAllPackages] = useState({});
+  useEffect(() => {
+    const getAllPackages = async () => {
+      const res = await axios({
+        url: "http://localhost:8080/packages",
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        httpsAgent: new https.Agent({
+          rejectUnauthorized: false,
+          requestCert: false,
+        }),
+      });
+      setAllPackages(res);
+    };
 
-export default function Packages({ data }) {
-  return <div>Hello World{console.log(data, "a")}</div>;
+    getAllPackages();
+  }, []);
+  return (
+    <div>
+      <Card data={allPackages.data} />
+      Hello World{console.log(allPackages, "a")}
+    </div>
+  );
 }

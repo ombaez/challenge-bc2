@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import https from "https";
 import { AlertCustomed as Alert } from "../../components/UI/Alert";
+import { CardCustomed as Card } from "../../components/UI/Cards";
 
 export default function GetPassenger() {
   const [passenger, setPassenger] = useState({});
@@ -36,10 +37,12 @@ export default function GetPassenger() {
       <h1>Get Passenger</h1>
       {<Alert variant={"success"} text={passenger.msg} />}
       {passenger.id && (
-        <Alert
-          variant={"primary"}
-          text={`${passenger.id} \n ${passenger.nroVuelo} \n ${passenger.name}`}
-        />
+        <>
+          <Alert
+            variant={"primary"}
+            text={`Id: ${passenger.id} // NroVuelo: ${passenger.nroVuelo} // Nombre: ${passenger.name}`}
+          />
+        </>
       )}
     </div>
   );

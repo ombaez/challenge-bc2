@@ -67,13 +67,13 @@ module.exports = {
       const passenger = await PassengerPackage.update(
         { equipaje_id: [] },
         {
-          where: {
-            passenger_id,
-          },
-          plain: true,
+          where: { passenger_id: passenger_id },
           returning: true,
+          plain:true
         }
       );
+
+      console.log(passenger);
 
       return res.json(passenger);
     } catch (error) {

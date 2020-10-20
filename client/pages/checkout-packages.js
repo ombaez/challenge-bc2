@@ -1,8 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import https from "https";
-import { FormCustomed as Form } from "../components/UI/Form";
-import { ButtonCustomed as Button } from "../components/UI/Button";
+import { FormCustomed as Form } from "../components/UI/Form/Form";
+import { ButtonCustomed as Button } from "../components/UI/Button/Button";
 import { AlertCustomed as Alert } from "../components/UI/Alert";
 
 export default function CheckoutPackages() {
@@ -45,7 +45,9 @@ export default function CheckoutPackages() {
         <Alert
           key={"idx"}
           variant={"primary"}
-          text={`Cantidad de equipajes disponibles = ${console.log(data)}`}
+          text={`Cantidad de equipajes disponibles = ${
+            3 - data[1].equipaje_id.length
+          }`}
         ></Alert>
       )}
     </div>

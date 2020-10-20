@@ -1,14 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 import https from "https";
-import { FormCustomed  as Form } from "../components/UI/Form";
+import { FormCustomed as Form } from "../components/UI/Form/Form";
+import { ButtonCustomed as Button } from "../components/UI/Button/Button";
 
 export default function PostPackages() {
   const [form, setForm] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const postPackage = await axios.post(
       "http://localhost:8080/packages",
       { ...form },
@@ -41,7 +41,7 @@ export default function PostPackages() {
           <option value="Chico">Chico</option>
           <option value="Prendas">Prendas</option>
         </select>
-        <button type="submit"> ENVIAR</button>
+        <Button type={"submit"}> ENVIAR</Button>
       </Form>
     </div>
   );

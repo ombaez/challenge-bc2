@@ -20,7 +20,10 @@ module.exports = {
       });
 
       if (!packagesPassenger.length) {
-        return res.json({ ...passenger, msg: "No tiene equipaje cargado" });
+        return res.json({
+          ...passenger,
+          msg: "Tiene 3 UN disponibles de equipaje",
+        });
       }
       const arrayEquipajes = await Promise.all(
         packagesPassenger[0].equipaje_id.map(async (equipaje) => {
@@ -53,8 +56,32 @@ module.exports = {
   },
   getAllPassengersWithPackage: async (req, res) => {
     try {
-      const all = await PassengerPackage.findAll({ raw: true });
-      return res.send(all);
+      const all = await PassengerPackage.findAll();
+
+      const allWithPackage = all.reduce((result, passengerPackage) => {
+        if (passengerPackage.equipaje_id.length > 0) {
+          result.push(passengerPackage);
+        }
+        return result;
+      }, []);
+
+      const passengerWithPackage = await Promise.all(
+        allWithPackage.map(async (passenger) => {
+          const arrayPackage = await Promise.all(
+            passenger.equipaje_id.map(async (id) => {
+              const package = await Package.findByPk(id);
+              return package;
+            })
+          );
+
+          const passengerIdentified = await Passenger.findByPk(
+            passenger.passenger_id,
+            { raw: true }
+          );
+          return { ...passengerIdentified, arrayPackage };
+        })
+      );
+      return res.json({ all, passengerWithPackage });
     } catch (error) {
       console.log(error);
     }
