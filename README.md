@@ -15,7 +15,7 @@ En la carpeta root, corre el comando "npm run dev" para ejecutar ambos servicios
 Cliente = ## PUERTO 3000
 Servidor = ## PUERTO 8080
 
-##  BACKEND
+## BACKEND
 
 GET - "/bulk/create" - Crear varios pasajeros en la tabla passengers
 GET - "/bulk"/delete" - Elimina todos los registros de todas las tablas
@@ -29,6 +29,6 @@ GET - "/packages/:passengerId" - Devuelve datos de equipaje
 GET - "/packages/" Devuelve todos los equipajes
 POST - "/packages/" Crea un nuevo equipaje ( el pasajero_id var por el body)
 
-##  FRONTEND
+## FRONTEND
 
 Cada funcionalidad esta aclarada en el titulo de la navbar del FE
