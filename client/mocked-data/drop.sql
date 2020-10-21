@@ -1,1 +1,0 @@
-DROP TABLE pasajeros, equipaje,pasajeros_equipajes;
