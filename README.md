@@ -1,30 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## INICIO
 
-## Getting Started
+Instala las dependecias de las carpetas corriendo el comando "npm i"
 
-First, run the development server:
+- root del proyecto ( es el servidor de la app ) y /client
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Crea una base de datos con psql llamada "challenge"
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Abri el terminal
+- Tipea el comando "psql"
+- Dentro de la CLI de psql, tipea "create database challenge;", deberia devolverte "CREATE DATABASE" para confirmar la operacion.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+En la carpeta root, corre el comando "npm run dev" para ejecutar ambos servicios cliente + servidor.
 
-## Learn More
+Cliente = ## PUERTO 3000
+Servidor = ## PUERTO 8080
 
-To learn more about Next.js, take a look at the following resources:
+##  BACKEND
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+GET - "/bulk/create" - Crear varios pasajeros en la tabla passengers
+GET - "/bulk"/delete" - Elimina todos los registros de todas las tablas
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+POST - "/passengers/checkout/:passengerId" - Retira los equipajes de un pasajero
+POST - "/passengers/" - Crea pasajeros
+GET - "/passengers/" - Devuelve todos los pasajeros
 
-## Deploy on Vercel
+GET - "/packages/with-package" - Devuelve pasajeros con equipaje
+GET - "/packages/:passengerId" - Devuelve datos de equipaje
+GET - "/packages/" Devuelve todos los equipajes
+POST - "/packages/" Crea un nuevo equipaje ( el pasajero_id var por el body)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+##  FRONTEND
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Cada funcionalidad esta aclarada en el titulo de la navbar del FE
