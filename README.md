@@ -12,8 +12,8 @@ Crea una base de datos con psql llamada "challenge"
 
 En la carpeta root, corre el comando "npm run dev" para ejecutar ambos servicios cliente + servidor.
 
-- Cliente = ## PUERTO 3000
-- Servidor = ## PUERTO 8080
+- Cliente ## PUERTO 3000
+- Servidor ## PUERTO 8080
 
 ## BACKEND
 
