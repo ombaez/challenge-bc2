@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import https from "https";
 import { AlertCustomed as Alert } from "../../components/UI/Alert";
-import { CardCustomed as Card } from "../../components/UI/Cards";
 
 export default function GetPassenger() {
   const [passenger, setPassenger] = useState({});

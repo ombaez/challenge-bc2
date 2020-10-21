@@ -5,7 +5,6 @@ const Package = require("../models/Package");
 module.exports = {
   getPassengerData: async (req, res) => {
     try {
-      console.log(req.params, "booooooooooooooody");
       const passenger = await Passenger.findByPk(
         Number(req.params.passengerId),
         { raw: true }
@@ -68,18 +67,6 @@ module.exports = {
       const passengerWithPackage = await Promise.all(
         allWithPackage.map(async (passenger) => {
           const arrayPackage = await Promise.all(
-            /*ACA TENGO QUE HACER UN REDUCE*/
-
-            // passenger.equipaje_id.reduce(async (result, id) => {
-            //   const package = await Package.findByPk(id);
-            //   if (package) {
-            //     result.push(package);
-            //   }
-            //   return result;
-            // }, [])
-            
-
-
             passenger.equipaje_id.map(async (id) => {
               const package = await Package.findByPk(id);
               return package;
@@ -94,7 +81,6 @@ module.exports = {
         })
       );
 
-      console.log({ all, passengerWithPackage });
       return res.json({ all, passengerWithPackage });
     } catch (error) {
       console.log(error);
@@ -107,7 +93,7 @@ module.exports = {
       const newPassenger = await Passenger.create({ name, nroVuelo });
       return res.json(newPassenger);
     } catch (error) {
-      console.log(error);
+      return res.json(error.message);
     }
   },
 };

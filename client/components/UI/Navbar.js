@@ -17,8 +17,8 @@ export const NavbarCustomed = ({ children, ...rest }) => (
     <Navbar.Collapse id="basic-navbar-nav">
         <NavLink href="/">{"Inicio"}</NavLink>
       <Nav className="ml-auto" >
-        <NavLink href="/post-packages">{"Nuevo equipaje"}</NavLink>
         <NavLink href="/post-passengers">{"Nuevo pasajero"}</NavLink>
+        <NavLink href="/post-packages">{"Nuevo equipaje"}</NavLink>
         <NavLink href="/get-packages">{"Ver equipaje"}</NavLink>
         <NavLink href="/checkout-packages">{"Retira equipaje"}</NavLink>
         <NavLink href="/passengers-with-package">{"Pasajero/Equipaje"}</NavLink>

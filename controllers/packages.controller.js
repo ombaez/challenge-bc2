@@ -4,25 +4,31 @@ const Package = require("../models/Package");
 module.exports = {
   postPackages: async (req, res) => {
     try {
-      const { tipo, descripcion } = req.body;
+      const { tipo, descripcion, passenger_id } = req.body;
+
       const newPackage = await Package.create({
         tipo,
         descripcion,
       });
 
+      console.log(newPackage.id);
+
       const [passengerPackage, created] = await PassengerPackage.findOrCreate({
-        where: { passenger_id: req.body.passenger_id },
+        where: { passenger_id: passenger_id },
         defaults: {
           equipaje_id: [newPackage.id],
+          passenger_id: passenger_id,
         },
       });
 
       if (created == true) {
+        console.log("de 0");
         return res.json(passengerPackage);
       } else {
+        console.log("busca");
         const findJoinedRegister = await PassengerPackage.findAll({
           where: {
-            passenger_id: req.body.passenger_id,
+            passenger_id: passenger_id,
           },
         });
 
@@ -43,13 +49,16 @@ module.exports = {
 
           return res.json(updateJoinedRegister[1]);
         } else {
-          return res.json(findJoinedRegister);
+          await Package.destroy({
+            where: {
+              id: newPackage.id,
+            },
+          });
+          return res.json({ findJoinedRegister, max: true });
         }
       }
-
-      // console.log(joinedRegister);
     } catch (error) {
-      console.log(error);
+      return res.json(error);
     }
   },
   getPackages: async (req, res) => {
@@ -64,13 +73,12 @@ module.exports = {
     try {
       const { passenger_id } = req.body;
 
-      console.log(passenger_id);
-
       const checkPassenger = await PassengerPackage.findByPk(passenger_id, {
         raw: true,
       });
 
-      
+      console.log(checkPassenger);
+
       if (!checkPassenger) {
         return res.json({ msg: "Este pasajero no tiene equipaje declarado" });
       }
@@ -83,7 +91,6 @@ module.exports = {
           plain: true,
         }
       );
-
 
       return res.json(passenger);
     } catch (error) {
