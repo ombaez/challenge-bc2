@@ -27,21 +27,33 @@ export default function PostPackages() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
   return (
-    <div>
-      {JSON.stringify(form, null, 2)}
-      <h1>POST-EQUIPAJE 1</h1>
-      <Form onSubmit={handleSubmit} id="form1">
-        <input type="text" onChange={handleChange} name="descripcion"></input>
-        <input type="text" onChange={handleChange} name="passenger_id"></input>
-        <select name="tipo" defaultValue={"DEFAULT"} onChange={handleChange}>
-          <option value="DEFAULT" disabled>
-            Elija Tipo ...
-          </option>
-          <option value="Grande">Grande</option>
-          <option value="Chico">Chico</option>
-          <option value="Prendas">Prendas</option>
-        </select>
-        <Button type={"submit"}> ENVIAR</Button>
+    <div style={{ margin: "2em auto" }}>
+      <h1>Nuevo equipaje</h1>
+      <Form onSubmit={handleSubmit}>
+        <label>
+          Ingrese descripcion
+          <input type="text" onChange={handleChange} name="descripcion"></input>
+        </label>
+        <label>
+          Ingrese id de pasajero
+          <input
+            type="text"
+            onChange={handleChange}
+            name="passenger_id"
+          ></input>
+        </label>
+        <label>
+          Seleccione tipo equipaje
+          <select name="tipo" defaultValue={"DEFAULT"} onChange={handleChange}>
+            <option value="DEFAULT" disabled>
+              Elija Tipo ...
+            </option>
+            <option value="Grande">Grande</option>
+            <option value="Chico">Chico</option>
+            <option value="Prendas">Prendas</option>
+          </select>
+        </label>
+        <Button type={"submit"}> Cargar</Button>
       </Form>
     </div>
   );

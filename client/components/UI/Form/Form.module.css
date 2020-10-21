@@ -1,4 +1,22 @@
-.formMain input {
+.formMain {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.formMain label {
+  margin: 1em;
+}
+
+.formMain input {
+  margin: 0.5em;
+}
+
+.formMain select {
+  width: 20%;
+  margin: 0.5em;
+}
+
+.formMain button {
+  width: 15%;
 }

@@ -26,7 +26,14 @@ export default function Passengers() {
   }, []);
 
   return (
-    <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+    <div
+      style={{
+        margin: "2em",
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+      }}
+    >
       <Card data={passengersData.data} />
     </div>
   );

@@ -33,8 +33,12 @@ export default function GetPassenger() {
   }, [passenger_id]);
 
   return (
-    <div>
-      <h1>Get Passenger</h1>
+    <div
+      style={{
+        marginTop: "2em",
+      }}
+    >
+      <h1>Datos de pasajero</h1>
       {<Alert variant={"success"} text={passenger.msg} />}
       {passenger.id && (
         <>

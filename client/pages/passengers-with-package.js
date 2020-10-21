@@ -30,10 +30,7 @@ export default function PassengersWithPackage() {
   return (
     <div
       style={{
-        marginTop: 50,
-        display: "flex",
-        "flex-direction": "row",
-        "flex-wrap": "wrap",
+        marginTop: "2em",
       }}
     >
       <Card data={passengersWithPackage.passengerWithPackage} />

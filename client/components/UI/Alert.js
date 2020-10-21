@@ -7,7 +7,11 @@ export const AlertCustomed = ({
   textForLink,
   ...rest
 }) => (
-  <Alert variant={variant} {...rest}>
+  <Alert
+    style={{ margin: "2em 0"}}
+    variant={variant}
+    {...rest}
+  >
     {text}
     {link && <Alert.Link href={link}> {textForLink} </Alert.Link>}
   </Alert>

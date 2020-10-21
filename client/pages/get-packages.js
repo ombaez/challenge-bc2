@@ -24,9 +24,16 @@ export default function Packages() {
     getAllPackages();
   }, []);
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        margin: "2em",
+        justifyContent:'center'
+      }}
+    >
       <Card data={allPackages.data} />
-      Hello World{console.log(allPackages, "a")}
     </div>
   );
 }

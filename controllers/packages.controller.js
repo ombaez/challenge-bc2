@@ -64,16 +64,26 @@ module.exports = {
     try {
       const { passenger_id } = req.body;
 
+      console.log(passenger_id);
+
+      const checkPassenger = await PassengerPackage.findByPk(passenger_id, {
+        raw: true,
+      });
+
+      
+      if (!checkPassenger) {
+        return res.json({ msg: "Este pasajero no tiene equipaje declarado" });
+      }
+
       const passenger = await PassengerPackage.update(
         { equipaje_id: [] },
         {
           where: { passenger_id: passenger_id },
           returning: true,
-          plain:true
+          plain: true,
         }
       );
 
-      console.log(passenger);
 
       return res.json(passenger);
     } catch (error) {

@@ -25,6 +25,7 @@ export default function CheckoutPackages() {
         }),
       }
     );
+
     setData(postPackage.data);
   };
 
@@ -33,11 +34,17 @@ export default function CheckoutPackages() {
   };
 
   return (
-    <div>
-      {JSON.stringify(form, null, 2)}
-      <h1>CHECKOUT EQUIPAJE</h1>
+    <div style={{margin:"2em"}}>
+      <h1>Checkout</h1>
       <Form onSubmit={handleSubmit} id="form">
-        <input type="text" onChange={handleChange} name="passenger_id"></input>
+        <label>
+          Ingrese id pasajero para retirar equipaje
+          <input
+            type="text"
+            onChange={handleChange}
+            name="passenger_id"
+          ></input>
+        </label>
         <Button type="submit">Enviar</Button>
       </Form>
 
@@ -49,6 +56,10 @@ export default function CheckoutPackages() {
             3 - data[1].equipaje_id.length
           }`}
         ></Alert>
+      )}
+
+      {data.msg && (
+        <Alert key={"idx"} variant={"warning"} text={data.msg}></Alert>
       )}
     </div>
   );
